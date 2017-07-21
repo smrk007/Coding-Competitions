@@ -1,6 +1,7 @@
 from math import *
 
-data = input().split()
+#data = input().split()
+data = [2, 10, 10, 1, 15, 15, 10, 10, 2, 20.5, 10, 10, 20.5]
 
 class vec2:
 
