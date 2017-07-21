@@ -1,4 +1,5 @@
-data = input().split()
+#data = input().split()
+data = ['5', 'ACGT', 'GTAC', 'A', 'C', 'ACGT', 'TGCA', 'ACGT', 'TCGATCGA', 'A', 'AAAAAAAAAAAAAAAAAA']
 
 N = int(data[0])
 
@@ -7,12 +8,12 @@ def copyOperations(initial, target, charDist, count):
     if len(charDist[target[0]]) == 0:
         return "impossible"
     length = 0
-    valid = charDist(target[0])
-    while len(valid) > 0:
+    valid = charDist[target[0]]
+    while len(valid) > 0 and length < len(target):
         length += 1
         lenValid = len(valid)
         for i in range(len(valid)):
-            if valid[lenValid-i-1] == 0:
+            if valid[lenValid-i-1] == 0 and len(initial) > 1:
                 if initial[1] != target[length]:
                     del valid[lenValid-i-1]
             elif valid[lenValid-i-1] == len(initial) - 1:
