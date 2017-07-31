@@ -6,17 +6,29 @@ def isInt(string):
             return True
     return False
 
-while True:
+'''while True:
     try:
         data.append(input())
     except EOFError:
         data.pop()
-        break
+        break'''
+
+data = open('sample.in','r')
+data = data.read().split('\n')
+data = ' '.join(data)
+data = data.split(' ')
+
 
 code = 0
 vExist = set()
 vValue = dict()
 line = [0]
+
+next = data.pop(0)
+if isInt(next):
+    line[0] += int(next)
+else:
+    line.append(next)
 
 while len(data) > 0:
 
@@ -27,21 +39,26 @@ while len(data) > 0:
         elif next == "=":
             code = 2
         else:
+            line[0] = str(line[0])
             print(' + '.join(line))
-            vExist = set()
-            vValue = dict()
+            vExist.clear()
+            vValue.clear()
             line = [0]
-            if isInt(next):
+            if next in vValue:
+                line[0] += vValue[next]
+            elif isInt(next):
                 line[0] += int(next)
             else:
                 line.append(next)
 
     elif code == 1:
         next = data.pop(0)
+
         if isInt(next):
             line[0] += int(next)
         else:
             line.append(next)
+        code = 0
 
     elif code == 2:
         vExist.add(line[1])
